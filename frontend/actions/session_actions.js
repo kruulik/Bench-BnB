@@ -19,12 +19,15 @@ export const receiveErrors = errors => {
 
 export const signup = user => dispatch => {
   return APIUtil.signup(user)
-    .then(user => dispatch(receiveCurrentUser(user)));
+    .then(user => dispatch(receiveCurrentUser(user)),
+    res => dispatch(receiveErrors(res)));
+    // depending on response status
 };
 
 export const login = user => dispatch => {
   return APIUtil.login(user)
-    .then(user => dispatch(receiveCurrentUser(user)));
+    .then(user => dispatch(receiveCurrentUser(user)),
+    res => dispatch(receiveErrors(res)));
 };
 
 export const logout = () => dispatch => {
